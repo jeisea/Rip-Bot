@@ -7,7 +7,9 @@ exports.run = (client, message, args) => {
       clipUrl = args[1];
     }
 
-    message.member.voiceChannel.join()
+    const voiceChannel = message.member.voiceChannel;
+    if (voiceChannel) {
+      voiceChannel.join()
       .then(connection => {
         const streamOptions = { seek: 12, volume: 1 };
         const stream = ytdl("https://www.youtube.com/watch?v=upkYQqbrjSc", { filter : "audioonly" });
@@ -16,6 +18,7 @@ exports.run = (client, message, args) => {
         setTimeout(() => dispatcher.end(), 13000);
       })
       .catch(console.error);
+    }
     sql.get(`SELECT * FROM deaths WHERE userId ="${message.author.id}"`).then(row => {
       if (!row) {
         sql.run("INSERT INTO deaths (userId, deaths, clip) VALUES (?, ?, ?)", [message.author.id, 1, clipUrl]);
