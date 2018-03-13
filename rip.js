@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
 const client = new Discord.Client();
-
+const sql = require("sqlite");
 client.on("ready", () => {
+  sql.open("./deaths.sqlite");
   console.log("I am ready!");
 });
 
@@ -17,7 +18,7 @@ client.on("message", message => {
   // The list of if/else is replaced with those simple 2 lines:
   try {
     let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(client, message, args);
+    commandFile.run(client, message, args, sql);
   } catch (err) {
     console.error(err);
   }

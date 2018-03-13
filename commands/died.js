@@ -1,7 +1,5 @@
-const sql = require("sqlite");
 const ytdl = require('ytdl-core');
-sql.open("./deaths.sqlite");
-exports.run = (client, message, args) => {
+exports.run = (client, message, args, sql) => {
     let clipUrl = "";
     if (args.length > 1 && args[1].indexOf("https://clips.twitch.tv/") == 0) {
       clipUrl = args[1];

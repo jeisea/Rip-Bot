@@ -1,6 +1,3 @@
-const sql = require("sqlite");
-sql.open("./deaths.sqlite");
-
 let ranking = (deathCount) => {
   if (deathCount == 0) {
     return ["The GOAT", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Michael_Jordan_in_2014.jpg/220px-Michael_Jordan_in_2014.jpg"];
@@ -15,7 +12,7 @@ let ranking = (deathCount) => {
   }
 };
 
-exports.run = (client, message, args) => {
+exports.run = (client, message, args, sql) => {
     sql.get(`SELECT * FROM deaths WHERE userId ="${message.author.id}"`).then(row => {
       let embed = {
         color: 0xea6fd1,
