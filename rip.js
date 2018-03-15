@@ -24,9 +24,10 @@ client.on("message", message => {
   }
 });
 
-client.on('disconnect', (message) => {
+client.on("disconnect", (message, code) => {
     // Reconnect after timing out
     console.log(message);
-    bot.connect();
+    console.log(code);
+    client.connect();
 });
 client.login(config.token);
