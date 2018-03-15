@@ -38,9 +38,6 @@ exports.run = (client, message, args, sql) => {
         let timeStr = row.deaths === 1 ? "time" : "times";
         let rank = ranking(row.deaths);
         embed.description = `Yikes! You've died ${row.deaths} ${timeStr}.`;
-        embed.video = {
-          url: row.clip
-        };
         embed.fields[0].value = rank[0];
         embed.image = {
           url: rank[1],

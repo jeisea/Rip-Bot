@@ -24,8 +24,9 @@ client.on("message", message => {
   }
 });
 
-client.on('disconnect', function(erMsg, code) {
+client.on('disconnect', (message) => {
     // Reconnect after timing out
+    console.log(message);
     bot.connect();
 });
 client.login(config.token);

@@ -22,7 +22,7 @@ exports.run = (client, message, args, sql) => {
         sql.run("INSERT INTO deaths (userId, deaths, clip) VALUES (?, ?, ?)", [message.author.id, 1, clipUrl]);
       } else {
         if (clipUrl.length > 0) {
-          sql.run(`UPDATE deaths SET deaths = ${row.deaths + 1}, clip = ${clipUrl} WHERE userId = ${message.author.id}`);
+          sql.run(`UPDATE deaths SET deaths = ${row.deaths + 1}, clip = '${clipUrl}' WHERE userId = ${message.author.id}`);
         } else {
           sql.run(`UPDATE deaths SET deaths = ${row.deaths + 1} WHERE userId = ${message.author.id}`);
         }
