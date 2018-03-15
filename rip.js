@@ -23,4 +23,9 @@ client.on("message", message => {
     console.error(err);
   }
 });
+
+client.on('disconnect', function(erMsg, code) {
+    // Reconnect after timing out
+    bot.connect();
+});
 client.login(config.token);
